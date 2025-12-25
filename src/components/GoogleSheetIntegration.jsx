@@ -69,8 +69,7 @@ export default function GoogleSheetIntegration({ selectedProjects }) {
           bedrooms: p.bedrooms
         })),
         temperature: leadTemperature,
-            discussionSummary: discussionSummary,
-          discussionSummary: discussionSummary,
+        discussionSummary: discussionSummary,
         timestamp: new Date().toISOString()
       }
 
@@ -88,11 +87,10 @@ export default function GoogleSheetIntegration({ selectedProjects }) {
         setSuccess(false)
         setCustomerInfo({ name: '', email: '', phone: '', budget: '', preferences: '' })
         setLeadTemperature(LEAD_TEMPERATURE.WARM)
-          setDiscussionSummary('')
+        setDiscussionSummary('')
         setIsDuplicate(false)
         setDuplicateWarning('')
       }, 2000)
-      
     } catch (err) {
       setError('Failed to create lead. Please try again.')
       console.error('Export error:', err)
@@ -238,18 +236,18 @@ export default function GoogleSheetIntegration({ selectedProjects }) {
                   value={customerInfo.preferences}
                   onChange={(e) => handleCustomerInfoChange('preferences', e.target.value)}
                   className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors resize-none h-24"
-
-                              <div>
-                                <label className="block text-sm text-gray-300 font-semibold mb-2">Discussion Summary</label>
-                                <textarea
-                                  placeholder="Brief summary of discussion with customer (e.g., Interested in ROI properties, comparing Downtown Dubai vs Arabian Ranches, wants 8%+ return, needs completion timeline details, scheduled viewing...)"
-                                  value={discussionSummary}
-                                  onChange={(e) => setDiscussionSummary(e.target.value)}
-                                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors resize-none h-32"
-                                />
-                                <p className="text-xs text-gray-400 mt-2">💡 Key talking points, objections, next steps, and viewing status</p>
-                              </div>
                 />
+              </div>
+
+              <div>
+                <label className="block text-sm text-gray-300 font-semibold mb-2">Discussion Summary</label>
+                <textarea
+                  placeholder="Brief summary of discussion with customer (e.g., Interested in ROI properties, comparing Downtown Dubai vs Arabian Ranches, wants 8%+ return, needs completion timeline details, scheduled viewing...)"
+                  value={discussionSummary}
+                  onChange={(e) => setDiscussionSummary(e.target.value)}
+                  className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors resize-none h-32"
+                />
+                <p className="text-xs text-gray-400 mt-2">💡 Key talking points, objections, next steps, and viewing status</p>
               </div>
 
               <div>
@@ -417,6 +415,7 @@ export default function GoogleSheetIntegration({ selectedProjects }) {
             </div>
           </div>
         </div>
+      </div>
 
         {/* Data Preview */}
         <div className="mt-8 bg-slate-800/50 border border-slate-700 rounded-xl p-6">
