@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tailwindcss/postcss": "^4.1.18",
     "autoprefixer": "^10.4.23",
     "axios": "^1.4.0",
     "cors": "^2.8.5",
@@ -28,6 +27,7 @@
     "twilio": "^4.0.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.18",
     "nodemon": "^3.0.1",
     "vite": "^7.3.0"
   },
