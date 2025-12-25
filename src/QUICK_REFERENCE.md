@@ -211,7 +211,8 @@ App (Main)
 ```css
 /* Buttons */
 .btn-primary {
-  @apply px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg
+  @apply px-6 py-3 bg-cyan-500 text-white rounded-lg;
+  /* bg-gradient-to-r from-cyan-500 to-blue-600 removed for Tailwind v4+ compatibility */
 }
 
 /* Cards */
