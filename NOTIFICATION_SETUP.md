@@ -113,7 +113,7 @@ app.post('/api/send-email-notification', async (req, res) => {
           <style>
             body { font-family: Arial, sans-serif; color: #333; background: #f5f5f5; }
             .container { max-width: 600px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; }
-            .header { background: linear-gradient(135deg, #06b6d4 0%, #2563eb 100%); color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+            .header { background: linear-gradient(135deg, #0a2e6d 0%, #00e676 100%); color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
             .duplicate-alert { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; margin: 20px 0; color: #92400e; }
             table { width: 100%; border-collapse: collapse; margin: 20px 0; }
             th { background: #f0f0f0; padding: 12px; text-align: left; font-weight: bold; border: 1px solid #ddd; }
@@ -121,8 +121,8 @@ app.post('/api/send-email-notification', async (req, res) => {
             .temperature { display: inline-block; padding: 8px 12px; border-radius: 4px; font-weight: bold; margin: 10px 0; }
             .hot { background: linear-gradient(135deg, #dc2626 0%, #ea580c 100%); color: white; }
             .warm { background: linear-gradient(135deg, #eab308 0%, #f97316 100%); color: white; }
-            .cold { background: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%); color: white; }
-            .footer { background: #f9fafb; padding: 15px; text-align: center; font-size: 12px; color: #666; border-radius: 4px; margin-top: 20px; }
+            .cold { background: linear-gradient(135deg, #0a2e6d 0%, #00bcd4 100%); color: white; }
+            .footer { background: #f5f5f5; padding: 15px; text-align: center; font-size: 12px; color: #0a2e6d; border-radius: 4px; margin-top: 20px; }
           </style>
         </head>
         <body>

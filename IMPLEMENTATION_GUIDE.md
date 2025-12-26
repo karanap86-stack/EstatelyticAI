@@ -226,16 +226,17 @@ const DUBAI_PROJECTS = [
 ### Customize Colors
 
 Edit `src/index.css` and `src/components/*.jsx`:
-- Primary: Change `cyan-500` to your color
-- Secondary: Change `blue-600` to your color
-- Background: Change `slate-900` to your color
+- Primary: Use `#0a2e6d` (deep blue)
+- Secondary/Accent: Use `#00e676` (vibrant green)
+- Accent Blue: Use `#00bcd4`
+- Background: Use white or a very light blue/gray
 
 ### Change Logo/Branding
 
 Edit `src/components/Navbar.jsx`:
 ```javascript
-<div className="w-8 h-8 bg-gradient-to-br from-cyan-400 to-blue-600">
-  {/* Change colors here */}
+<div className="w-8 h-8" style={{ background: 'linear-gradient(135deg, #0a2e6d 0%, #00e676 100%)' }}>
+   {/* EstatelyticAI brand colors */}
 </div>
 ```
 

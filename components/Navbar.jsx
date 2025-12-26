@@ -39,26 +39,12 @@ export default function Navbar({ activeTab, setActiveTab }) {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-              <span className="text-white font-extrabold text-2xl">DP</span>
+            <img src={require('../assets/estatelyticai_logo.png')} alt="EstatelyticAI Logo" className="w-14 h-14 rounded-full shadow-lg border-2 border-blue-400 bg-white object-contain" style={{background: 'linear-gradient(135deg, #0a2e6d 0%, #00e676 100%)'}} />
+            <div className="ml-2">
+              <h1 className="text-2xl font-extrabold text-[#0a2e6d] hidden sm:block tracking-wide" style={{letterSpacing: '0.03em'}}>Estatelytic<span className="text-green-500">AI</span></h1>
+              <p className="text-sm font-medium hidden sm:block" style={{color: '#0a2e6d'}}>The Next Era of Real Estate: Intelligent, Instant, Infinite.</p>
+              <span className="text-xs font-semibold flex items-center gap-1 mt-1 hidden sm:block"><span role="img" aria-label="India flag">🇮🇳</span> <span className="text-[#0a2e6d]">Made in <span className="font-bold">INDIA</span></span></span>
             </div>
-            if (showAdminLogin && !adminMode) {
-              return <AdminLogin onSuccess={() => { setAdminMode(true); setShowAdminLogin(false); }} />
-            }
-            return (
-              <nav className="sticky top-0 left-0 right-0 bg-slate-950 border-b border-cyan-600/30 backdrop-blur-lg z-50 shadow-xl">
-                <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12">
-                  <div className="flex justify-between items-center h-20">
-                    {/* Logo */}
-                    <div className="flex items-center gap-2">
-                      <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <span className="text-white font-extrabold text-2xl">DP</span>
-                      </div>
-                      <div className="ml-2">
-                        <h1 className="text-2xl font-extrabold text-white hidden sm:block tracking-wide">Dubai Properties</h1>
-                        <p className="text-sm text-cyan-400 hidden sm:block font-medium">AI-Powered Real Estate</p>
-                      </div>
-                    </div>
 
                     {/* Desktop Nav */}
                     <div className="hidden md:flex gap-2">

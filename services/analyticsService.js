@@ -32,33 +32,56 @@ export const clearEvents = () => {
 }
 
 export const getAggregates = (leads = []) => {
-  const events = getAllEvents()
-  const leadCreated = events.filter(e => e.type === 'lead_created')
+  const events = getAllEvents();
+  const leadCreated = events.filter(e => e.type === 'lead_created');
   // leads per day (last 30 days)
-  const perDay = {}
-  const now = new Date()
+  const perDay = {};
+  const now = new Date();
   for (let i = 0; i < 30; i++) {
-    const d = new Date(now)
-    d.setDate(now.getDate() - i)
-    const key = d.toISOString().slice(0,10)
-    perDay[key] = 0
+    const d = new Date(now);
+    d.setDate(now.getDate() - i);
+    const key = d.toISOString().slice(0,10);
+    perDay[key] = 0;
   }
   leadCreated.forEach(e => {
-    const k = e.timestamp.slice(0,10)
-    if (perDay[k] !== undefined) perDay[k]++
-  })
+    const k = e.timestamp.slice(0,10);
+    if (perDay[k] !== undefined) perDay[k]++;
+  });
 
   // leads by temperature (from passed leads array)
-  const byTemp = { hot: 0, warm: 0, cold: 0 }
-  (leads || []).forEach(l => { if (l.temperature) byTemp[l.temperature] = (byTemp[l.temperature] || 0) + 1 })
+  const byTemp = { hot: 0, warm: 0, cold: 0 };
+  (leads || []).forEach(l => { if (l.temperature) byTemp[l.temperature] = (byTemp[l.temperature] || 0) + 1 });
 
   // top projects by selection count
-  const projectCount = {}
-  (leads || []).forEach(l => (l.selectedProjects || []).forEach(p => { projectCount[p.name] = (projectCount[p.name] || 0) + 1 }))
-  const topProjects = Object.keys(projectCount).map(name => ({ name, count: projectCount[name] })).sort((a,b) => b.count - a.count).slice(0,10)
+  const projectCount = {};
+  (leads || []).forEach(l => (l.selectedProjects || []).forEach(p => { projectCount[p.name] = (projectCount[p.name] || 0) + 1 }));
+  const topProjects = Object.keys(projectCount).map(name => ({ name, count: projectCount[name] })).sort((a,b) => b.count - a.count).slice(0,10);
 
   // notifications sent
-  const notifications = events.filter(e => e.type === 'notification_sent').length
+  const notifications = events.filter(e => e.type === 'notification_sent').length;
+
+  // Advanced analytics
+  // Conversion rate: leads with status 'closed-won' / total leads
+  const totalLeads = leads.length;
+  const closedWon = leads.filter(l => l.status === 'closed-won').length;
+  const conversionRate = totalLeads > 0 ? (closedWon / totalLeads) * 100 : 0;
+
+  // Funnel: open, in-progress, closed-won, closed-lost
+  const funnel = { open: 0, inProgress: 0, closedWon: 0, closedLost: 0 };
+  leads.forEach(l => {
+    if (l.status === 'open') funnel.open++;
+    else if (l.status === 'in-progress') funnel.inProgress++;
+    else if (l.status === 'closed-won') funnel.closedWon++;
+    else if (l.status === 'closed-lost') funnel.closedLost++;
+  });
+
+  // Engagement: unique users/agents (by userId/agentId if present)
+  const userSet = new Set();
+  const agentSet = new Set();
+  leads.forEach(l => {
+    if (l.userId) userSet.add(l.userId);
+    if (l.agentId) agentSet.add(l.agentId);
+  });
 
   return {
     totalEvents: events.length,
@@ -66,9 +89,13 @@ export const getAggregates = (leads = []) => {
     leadsPerDay: perDay,
     leadsByTemperature: byTemp,
     topProjects,
-    notificationsSent: notifications
-  }
-}
+    notificationsSent: notifications,
+    conversionRate: Number(conversionRate.toFixed(2)),
+    funnel,
+    uniqueUsers: userSet.size,
+    uniqueAgents: agentSet.size
+  };
+};
 
 export const exportEventsToCSV = () => {
   const events = getAllEvents()

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getAllProjects } from '../services/projectService'
 import { handleClientFeedback, handleDeveloperFeedback } from '../services/feedbackService'
 import AdminAutomationMenu from './AdminAutomationMenu'
+import InnovationReviewPanel from './InnovationReviewPanel'
 
 // Simulated in-memory feedback and developer ratings (replace with backend in production)
 let feedbackLog = [] // [{ type, message, context, date }]
@@ -60,6 +61,9 @@ export default function AdminFeedbackDashboard() {
             </div>
           ))}
         </div>
+      </section>
+      <section className="mb-10">
+        <InnovationReviewPanel reviewer="admin" />
       </section>
       <section>
         <h2 className="text-2xl font-semibold mb-4">All Feedback Log</h2>

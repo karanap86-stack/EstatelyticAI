@@ -1,3 +1,10 @@
+import { getCountryManagerAgent } from './agentService';
+
+// Utility: Check if agent is country manager for a country
+function isCountryManager(agent, country) {
+  const manager = getCountryManagerAgent(country);
+  return agent && manager && agent.id === manager.id;
+}
 // Refresh service: handles periodic data + content refresh
 // Stores last refresh timestamp and provides functions to trigger refreshes.
 
@@ -37,7 +44,11 @@ export const shouldRefreshNow = () => {
   }
 }
 
-export const performRefresh = async () => {
+export const performRefresh = async (agent, country) => {
+  if (!isCountryManager(agent, country)) {
+    console.warn(`[DENIED] Only country manager can refresh content for ${country}. Agent:`, agent ? agent.name : 'none');
+    return { success: false, error: 'Only country manager can refresh content for this country.' };
+  }
   try {
     // Call backend endpoints to refresh data and creative content
     // Backend should implement aggregation of project updates, pricing, and creative generation

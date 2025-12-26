@@ -18,16 +18,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: #0a2e6d;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #06b6d4;
+  background: #00e676;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0891b2;
+  background: #00bcd4;
 }
 
 /* Smooth animations */
@@ -76,9 +76,10 @@ html {
   scroll-behavior: smooth;
 }
 
+
 body {
-  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 50%, #f3e8ff 100%);
-  color: #232946;
+  background: linear-gradient(135deg, #0a2e6d 0%, #00e676 100%);
+  color: #0a2e6d;
   font-family: 'Playfair Display', serif;
 }
 
@@ -88,16 +89,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Button animations */
+
 button {
-  @apply transition-all duration-300 bg-white text-indigo-700 font-semibold shadow-sm rounded-lg;
-  border: 1px solid #e0e7ff;
+  @apply transition-all duration-300 font-semibold shadow-sm rounded-lg;
+  background: linear-gradient(90deg, #0a2e6d 0%, #00e676 100%);
+  color: #fff;
+  border: none;
   padding: 0.5rem 1.5rem;
   margin: 0.25rem 0;
+  box-shadow: 0 2px 8px 0 rgba(10,46,109,0.08);
 }
+
 
 button:active {
   @apply scale-95;
-  background: #ede9fe;
+  background: #00e676;
+  color: #0a2e6d;
 }
 
 /* Input animations */
@@ -108,16 +115,18 @@ select:focus {
 }
 
 /* Card hover effect */
+
 .card-hover {
-  @apply transition-all duration-300 hover:shadow-lg hover:shadow-indigo-200/40 hover:-translate-y-1;
-  background: rgba(255,255,255,0.7);
+  @apply transition-all duration-300 hover:shadow-lg hover:shadow-green-200/40 hover:-translate-y-1;
+  background: rgba(255,255,255,0.85);
   border-radius: 1rem;
-  box-shadow: 0 2px 16px 0 rgba(80, 80, 180, 0.08);
+  box-shadow: 0 2px 16px 0 rgba(10, 46, 109, 0.10);
 }
 
 /* Gradient text animation */
+
 .gradient-text {
-  background: linear-gradient(90deg, #7f9cf5 0%, #a78bfa 50%, #f472b6 100%);
+  background: linear-gradient(90deg, #00e676 0%, #0a2e6d 50%, #00bcd4 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -139,19 +148,24 @@ select:focus {
 }
 
 /* Responsive typography */
+
 @media (max-width: 640px) {
   h1 {
     @apply text-2xl;
+    color: #0a2e6d;
   }
   h2 {
     @apply text-xl;
+    color: #00e676;
   }
   h3 {
     @apply text-lg;
+    color: #0a2e6d;
   }
 }
 
 /* Mobile optimization */
+
 @media (max-width: 768px) {
   .container {
     @apply px-4;

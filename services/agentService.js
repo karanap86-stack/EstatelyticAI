@@ -1,3 +1,37 @@
+// Utility: Get both main and backup managers for a country
+export function getCountryManagers(country) {
+  return agents.filter(a => a.country === country && (a.role === 'country_manager' || a.role === 'country_manager_backup'));
+}
+
+// Dynamic load sharing: assign tasks to both managers if load is high
+// tasks: array of {id, type, ...}, loadThreshold: number of tasks before sharing
+export function assignTasksToManagers(country, tasks, loadThreshold = 5) {
+  const managers = getCountryManagers(country);
+  if (managers.length === 0) return [];
+  if (tasks.length <= loadThreshold || managers.length === 1) {
+    // Assign all to main manager
+    return tasks.map(task => ({ ...task, assignedTo: managers[0].id }));
+  }
+  // Divide tasks between main and backup
+  const half = Math.ceil(tasks.length / 2);
+  return [
+    ...tasks.slice(0, half).map(task => ({ ...task, assignedTo: managers[0].id })),
+    ...tasks.slice(half).map(task => ({ ...task, assignedTo: managers[1].id })),
+  ];
+}
+// Utility: Check if agent can interact with clients, developers, and channel partners only
+export function canAgentInteractWithClientsOnly(agent) {
+  // Only non-country-manager, non-linkedin_insights, non-international agents
+  return agent && agent.role === 'local';
+}
+
+// Utility: Check if agent can post or update content (country manager or linkedin_insights only)
+export function canAgentPostOrUpdate(agent, country) {
+  if (!agent) return false;
+  if (agent.role === 'country_manager' && agent.country === country) return true;
+  if (agent.role === 'linkedin_insights') return true;
+  return false;
+}
 import fs from 'fs'
 import path from 'path'
 let indiaRegions = require('../data/indiaRegions.json')
@@ -112,7 +146,8 @@ export function getLanguageOptionsForLocation({ country, state, city }) {
 
 // Agent pool example (in production, fetch from DB)
 const agents = [
-  { id: 1, name: 'Priya (Mumbai)', country: 'India', state: 'Maharashtra', city: 'Mumbai', role: 'local', languages: ['Marathi', 'Hindi', 'English'] },
+  { id: 1, name: 'Priya (Mumbai)', country: 'India', state: 'Maharashtra', city: 'Mumbai', role: 'country_manager', languages: ['Marathi', 'Hindi', 'English'] },
+  { id: 14, name: 'Anil (Deputy India)', country: 'India', state: 'Delhi', city: 'Delhi', role: 'country_manager_backup', languages: ['Hindi', 'English'] },
   { id: 2, name: 'Amit (Delhi)', country: 'India', state: 'Delhi', city: 'Delhi', role: 'local', languages: ['Hindi', 'English', 'Punjabi'] },
   { id: 5, name: 'Ravi (Bangalore)', country: 'India', state: 'Karnataka', city: 'Bangalore', role: 'local', languages: ['Kannada', 'English', 'Hindi'] },
   { id: 6, name: 'Lakshmi (Chennai)', country: 'India', state: 'Tamil Nadu', city: 'Chennai', role: 'local', languages: ['Tamil', 'English'] },
@@ -122,9 +157,44 @@ const agents = [
   { id: 10, name: 'Anjali (Lucknow)', country: 'India', state: 'Uttar Pradesh', city: 'Lucknow', role: 'local', languages: ['Hindi', 'Urdu', 'English'] },
   { id: 11, name: 'Ayesha (Hyderabad)', country: 'India', state: 'Telangana', city: 'Hyderabad', role: 'local', languages: ['Telugu', 'Urdu', 'English'] },
   { id: 12, name: 'Nisha (Thiruvananthapuram)', country: 'India', state: 'Kerala', city: 'Thiruvananthapuram', role: 'local', languages: ['Malayalam', 'English', 'Hindi'] },
-  { id: 3, name: 'Sara (Dubai)', country: 'UAE', role: 'international', languages: ['Arabic', 'English'] },
+  { id: 3, name: 'Sara (Dubai)', country: 'UAE', role: 'country_manager', languages: ['Arabic', 'English'] },
+  { id: 15, name: 'Omar (Deputy UAE)', country: 'UAE', role: 'country_manager_backup', languages: ['Arabic', 'English'] },
   { id: 4, name: 'Olga (Russia Desk)', country: 'UAE', role: 'international', assignedCountries: ['Russia'], languages: ['Russian', 'English'] },
+  { id: 13, name: 'LinkedIn Insights Bot', country: 'GLOBAL', role: 'linkedin_insights', languages: ['English'] },
 ]
+
+// Utility: Get the main and backup country manager for a given country
+export function getCountryManagerBackup(country) {
+  return agents.find(a => a.country === country && a.role === 'country_manager_backup') || null;
+}
+
+// Health check: Ensure only one main and one backup per country, and every country has a manager
+export function checkCountryManagerHealth() {
+  const countryMap = {};
+  agents.forEach(a => {
+    if (a.role === 'country_manager' || a.role === 'country_manager_backup') {
+      countryMap[a.country] = countryMap[a.country] || { main: 0, backup: 0 };
+      if (a.role === 'country_manager') countryMap[a.country].main++;
+      if (a.role === 'country_manager_backup') countryMap[a.country].backup++;
+    }
+  });
+  const issues = [];
+  Object.entries(countryMap).forEach(([country, { main, backup }]) => {
+    if (main !== 1) issues.push(`Country ${country} has ${main} main managers (should be 1)`);
+    if (backup !== 1) issues.push(`Country ${country} has ${backup} backups (should be 1)`);
+  });
+  return issues.length ? issues : ['All countries have exactly one main and one backup manager.'];
+}
+
+// Utility: Get the LinkedIn market insights agent
+export function getLinkedInInsightsAgent() {
+  return agents.find(a => a.role === 'linkedin_insights') || null;
+}
+
+// Utility: Get the country manager agent for a given country
+export function getCountryManagerAgent(country) {
+  return agents.find(a => a.country === country && a.role === 'country_manager') || null;
+}
 
 // Assign agent by location and market type
 export function assignAgentByLocation({ country, state, city, isNRI }) {

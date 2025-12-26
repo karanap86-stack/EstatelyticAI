@@ -57,13 +57,14 @@ export default function AIChatbot({ showDropPrompt = false, onEngage }) {
   }, [showDropPrompt])
 
   return (
-    <div className="fixed bottom-6 right-6 bg-white shadow-xl rounded-lg w-96 max-w-full z-50 border border-slate-200">
-      <div className="p-4 border-b font-bold text-lg bg-slate-100">AI Chatbot</div>
+    <div className="fixed bottom-6 right-6 shadow-xl rounded-lg w-96 max-w-full z-50 border" style={{ background: '#fff', borderColor: '#00e676' }}>
+      <div className="p-4 border-b font-bold text-lg" style={{ background: '#00e676', color: '#0a2e6d', borderColor: '#00e676' }}>AI Chatbot</div>
       <div className="px-4 pt-2 pb-0 flex flex-col gap-2">
-        <div className="text-xs text-slate-500">Detected country: <b>{country}</b></div>
-        <div className="text-xs text-slate-500">Preferred language:
+        <div className="text-xs" style={{ color: '#0a2e6d' }}>Detected country: <b>{country}</b></div>
+        <div className="text-xs" style={{ color: '#0a2e6d' }}>Preferred language:
           <select
             className="ml-2 px-2 py-1 border rounded text-xs"
+            style={{ borderColor: '#00e676', color: '#0a2e6d' }}
             value={selectedLanguage}
             onChange={e => setSelectedLanguage(e.target.value)}
           >
@@ -75,15 +76,16 @@ export default function AIChatbot({ showDropPrompt = false, onEngage }) {
       </div>
       <div className="p-4 h-64 overflow-y-auto flex flex-col gap-2">
         {messages.map((msg, i) => (
-          <div key={i} className={msg.from === 'ai' ? 'text-left text-slate-800' : 'text-right text-blue-700'}>
-            <span className="inline-block px-3 py-2 rounded-lg" style={{ background: msg.from === 'ai' ? '#f1f5f9' : '#dbeafe' }}>{msg.text}</span>
+          <div key={i} className={msg.from === 'ai' ? 'text-left' : 'text-right'} style={{ color: msg.from === 'ai' ? '#0a2e6d' : '#00e676' }}>
+            <span className="inline-block px-3 py-2 rounded-lg" style={{ background: msg.from === 'ai' ? '#e3fcec' : '#e3eafe', color: msg.from === 'ai' ? '#0a2e6d' : '#00e676' }}>{msg.text}</span>
           </div>
         ))}
-        {loading && <div className="text-slate-400">AI is typing...</div>}
+        {loading && <div style={{ color: '#00e676' }}>AI is typing...</div>}
       </div>
-      <div className="flex border-t">
+      <div className="flex border-t" style={{ borderColor: '#00e676' }}>
         <input
           className="flex-1 px-3 py-2 outline-none"
+          style={{ color: '#0a2e6d', borderColor: '#00e676' }}
           value={input}
           onChange={e => setInput(e.target.value)}
           onKeyDown={e => e.key === 'Enter' && sendMessage()}
@@ -91,7 +93,8 @@ export default function AIChatbot({ showDropPrompt = false, onEngage }) {
           disabled={loading}
         />
         <button
-          className="px-4 py-2 bg-blue-600 text-white font-semibold rounded-r-lg disabled:opacity-50"
+          className="px-4 py-2 font-semibold rounded-r-lg disabled:opacity-50"
+          style={{ background: 'linear-gradient(90deg, #0a2e6d 0%, #00e676 100%)', color: '#fff' }}
           onClick={sendMessage}
           disabled={loading || !input.trim()}
         >Send</button>

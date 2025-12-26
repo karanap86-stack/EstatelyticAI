@@ -9,29 +9,29 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto text-center">
         {/* Custom Gateway Heading */}
         <div className="mb-8">
-          <div className="inline-block mb-4 px-4 py-2 bg-cyan-600/20 border border-cyan-500/50 rounded-full">
-            <span className="text-cyan-400 text-xs sm:text-sm font-semibold flex items-center gap-2">
+          <div className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-[#0a2e6d] to-[#00e676] border border-blue-400 rounded-full shadow-md">
+            <span className="text-[#0a2e6d] text-xs sm:text-sm font-semibold flex items-center gap-2">
               <Sparkles size={14} />
-              AI-Powered Real Estate Discovery
+              The Next Era of Real Estate: Intelligent, Instant, Infinite.
             </span>
           </div>
 
           {/* Gateway Heading */}
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold italic text-pink-400 mb-4 tracking-tight gradient-text" style={{fontFamily: 'Playfair Display, serif', fontWeight: 900, fontStyle: 'italic'}}>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold italic text-[#00e676] mb-4 tracking-tight gradient-text" style={{fontFamily: 'Playfair Display, serif', fontWeight: 900, fontStyle: 'italic'}}>
             <span className="font-extrabold italic" style={{fontWeight: 900, fontStyle: 'italic'}}>
-              Your gateway to the home that's just Perfect
+              Welcome to EstatelyticAI
             </span>
           </h2>
 
-          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white mb-6 leading-tight tracking-tight" style={{fontFamily: 'Playfair Display, serif'}}>
-            Find Your Perfect Property in
-            <span className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Dubai & Abu Dhabi
+          <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-[#0a2e6d] mb-6 leading-tight tracking-tight" style={{fontFamily: 'Playfair Display, serif'}}>
+            Real Estate. Reinvented.
+            <span className="block bg-gradient-to-r from-[#00e676] via-[#0a2e6d] to-[#00bcd4] bg-clip-text text-transparent">
+              Intelligent. Instant. Infinite.
             </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-10" style={{fontFamily: 'Cormorant Garamond, Playfair Display, serif'}}>
-            Explore premium properties, analyze ROI, compare investments, and get AI-powered recommendations tailored to your budget and preferences.
+          <p className="text-lg sm:text-xl text-[#0a2e6d] max-w-3xl mx-auto mb-10 font-semibold" style={{fontFamily: 'Cormorant Garamond, Playfair Display, serif'}}>
+            Discover, analyze, and act on real estate opportunities with AI-powered insights, instant analytics, and infinite possibilities. <span className="font-bold text-[#00e676]">Made in <span className="font-extrabold">INDIA</span></span> 🇮🇳
           </p>
         </div>
 

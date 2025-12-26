@@ -1,5 +1,77 @@
 // Mock project data for Dubai and Abu Dhabi
+export const COMMERCIAL_PROJECTS = [
+  {
+    id: 101,
+    name: "Downtown Business Center",
+    developer: "Emaar Properties",
+    location: "Downtown Dubai",
+    price: 3500000,
+    type: "Office Space",
+    sqft: 3000,
+    imageUrl: "https://images.unsplash.com/photo-1464983953574-0892a716854b?w=500&h=400&fit=crop",
+    roi: 7.8,
+    appreciation: 10.1,
+    amenities: ["Parking", "Conference Rooms", "Cafeteria", "Security"],
+    description: "Premium office space in the heart of Dubai's business district.",
+    completionDate: "2024-Q2",
+    units: 200,
+    avgPrice: "3.5M - 7M AED"
+  },
+  {
+    id: 102,
+    name: "Marina Retail Plaza",
+    developer: "Damac Properties",
+    location: "Dubai Marina",
+    price: 2200000,
+    type: "Retail Space",
+    sqft: 1800,
+    imageUrl: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500&h=400&fit=crop",
+    roi: 8.2,
+    appreciation: 11.4,
+    amenities: ["Mall Access", "Parking", "Security"],
+    description: "Retail units in a high-footfall marina location.",
+    completionDate: "2023-Q4",
+    units: 120,
+    avgPrice: "2.2M - 4M AED"
+  },
+  {
+    id: 103,
+    name: "Industrial Logistics Park",
+    developer: "Nakheel",
+    location: "Jebel Ali",
+    price: 12000000,
+    type: "Industrial Land",
+    sqft: 20000,
+    imageUrl: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=500&h=400&fit=crop",
+    roi: 9.5,
+    appreciation: 12.7,
+    amenities: ["Truck Access", "Warehouse Ready", "Security"],
+    description: "Large-scale industrial land for logistics and warehousing.",
+    completionDate: "2025-Q1",
+    units: 10,
+    avgPrice: "12M - 25M AED"
+  },
+  {
+    id: 104,
+    name: "Business Bay Commercial Tower",
+    developer: "Aldar Properties",
+    location: "Business Bay",
+    price: 5000000,
+    type: "Commercial Project",
+    sqft: 5000,
+    imageUrl: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?w=500&h=400&fit=crop",
+    roi: 8.9,
+    appreciation: 13.2,
+    amenities: ["Offices", "Retail", "Parking", "Security"],
+    description: "Mixed-use commercial tower with office and retail spaces.",
+    completionDate: "2024-Q4",
+    units: 300,
+    avgPrice: "5M - 10M AED"
+  }
+];
+
 export const DUBAI_PROJECTS = [
+  // --- Add more property types as needed: hospitality, co-working, land parcels, etc. ---
   {
     id: 1,
     name: "Emaar Downtown",
@@ -213,7 +285,11 @@ export const getAllProjects = async () => {
   // Simulate API call
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve([...DUBAI_PROJECTS, ...ABU_DHABI_PROJECTS])
+      resolve([
+        ...DUBAI_PROJECTS,
+        ...ABU_DHABI_PROJECTS,
+        ...COMMERCIAL_PROJECTS
+      ])
     }, 500)
   })
 }
@@ -223,11 +299,14 @@ export const getProjectsByFilter = async (filters) => {
   
   return allProjects.filter(project => {
     const priceMatch = project.price >= filters.budget.min && project.price <= filters.budget.max
-    const areaMatch = filters.area.length === 0 || filters.area.some(area => project.location.includes(area))
-    const typeMatch = filters.propertyType.length === 0 || filters.propertyType.includes(project.bedrooms.toString())
-    
+    const areaMatch = filters.area.length === 0 || filters.area.some(area => project.location.toLowerCase().includes(area.toLowerCase()))
+    // Support both residential and commercial property types
+    const typeMatch = filters.propertyType.length === 0 ||
+      filters.propertyType.includes(project.bedrooms?.toString()) ||
+      (project.type && filters.propertyType.includes(project.type))
     return priceMatch && areaMatch && typeMatch
   })
+// --- Add more property types as needed: hospitality, co-working, land parcels, etc. ---
 }
 
 export const calculateROI = (project) => {

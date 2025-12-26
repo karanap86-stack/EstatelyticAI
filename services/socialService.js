@@ -1,3 +1,10 @@
+import { getCountryManagerAgent } from './agentService';
+
+// Utility: Check if agent is country manager for a country
+export function isCountryManager(agent, country) {
+  const manager = getCountryManagerAgent(country);
+  return agent && manager && agent.id === manager.id;
+}
 // Social integration service
 // Stores social credentials locally (for demo) and posts via backend endpoints
 
@@ -29,7 +36,13 @@ export const buildPostPayload = ({ title, body, imageUrl }) => {
 }
 
 // Post to LinkedIn via backend endpoint
-export const postToLinkedIn = async (payload, configs) => {
+
+// Only allow country manager to post
+export const postToLinkedIn = async (payload, configs, agent, country) => {
+  if (!isCountryManager(agent, country)) {
+    console.warn(`[DENIED] Only country manager can post to LinkedIn for ${country}. Agent:`, agent ? agent.name : 'none');
+    return { success: false, error: 'Only country manager can post to LinkedIn for this country.' };
+  }
   try {
     // payload: { title, body, imageUrl }
     const response = await fetch('/api/post-linkedin', {
@@ -46,7 +59,13 @@ export const postToLinkedIn = async (payload, configs) => {
 }
 
 // Post to Instagram via backend endpoint
-export const postToInstagram = async (payload, configs) => {
+
+// Only allow country manager to post
+export const postToInstagram = async (payload, configs, agent, country) => {
+  if (!isCountryManager(agent, country)) {
+    console.warn(`[DENIED] Only country manager can post to Instagram for ${country}. Agent:`, agent ? agent.name : 'none');
+    return { success: false, error: 'Only country manager can post to Instagram for this country.' };
+  }
   try {
     const response = await fetch('/api/post-instagram', {
       method: 'POST',

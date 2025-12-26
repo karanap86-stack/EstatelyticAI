@@ -1,0 +1,13 @@
+{
+  "welcome": "Welcome",
+  "property": "Property",
+  "price": "Price",
+  "location": "Location",
+  "status": "Status",
+  "available": "Available",
+  "sold": "Sold",
+  "lastUpdated": "Last updated",
+  "language": "Language",
+  "english": "English",
+  "arabic": "Arabic"
+}

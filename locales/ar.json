@@ -1,0 +1,13 @@
+{
+  "welcome": "مرحبا",
+  "property": "عقار",
+  "price": "السعر",
+  "location": "الموقع",
+  "status": "الحالة",
+  "available": "متاح",
+  "sold": "مباع",
+  "lastUpdated": "آخر تحديث",
+  "language": "اللغة",
+  "english": "الإنجليزية",
+  "arabic": "العربية"
+}

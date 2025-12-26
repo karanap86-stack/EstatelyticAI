@@ -211,18 +211,26 @@ App (Main)
 ```css
 /* Buttons */
 .btn-primary {
-  @apply px-6 py-3 bg-cyan-500 text-white rounded-lg;
-  /* bg-gradient-to-r from-cyan-500 to-blue-600 removed for Tailwind v4+ compatibility */
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(90deg, #0a2e6d 0%, #00e676 100%);
+  color: #fff;
+  border-radius: 0.5rem;
+  font-weight: 600;
 }
 
 /* Cards */
 .card {
-  @apply bg-slate-800 border border-slate-700 rounded-xl p-6
+  background: rgba(10,46,109,0.07);
+  border: 2px solid #0a2e6d;
+  border-radius: 1rem;
+  padding: 1.5rem;
 }
 
 /* Text */
 .text-heading {
-  @apply text-3xl font-bold text-white
+  font-size: 1.875rem;
+  font-weight: bold;
+  color: #0a2e6d;
 }
 ```
 

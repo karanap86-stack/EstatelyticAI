@@ -3,6 +3,7 @@ import { ChevronDown, X } from 'lucide-react'
 
 export default function FilterPanel({ filters, setFilters }) {
   const [expandedFilter, setExpandedFilter] = React.useState(null)
+  const [areaSearch, setAreaSearch] = React.useState('')
 
   const areas = ['Downtown Dubai', 'Dubai Marina', 'Palm Jumeirah', 'JBR', 'Arabian Ranches', 'Business Bay', 'Saadiyat Island', 'Al Reef', 'Yas Island', 'Khalifa City']
   const propertyTypes = [
@@ -10,7 +11,11 @@ export default function FilterPanel({ filters, setFilters }) {
     { value: '2', label: '2 Bedroom' },
     { value: '3', label: '3 Bedroom' },
     { value: '4', label: '4+ Bedroom' },
-    { value: '5', label: '5+ Bedroom' }
+    { value: '5', label: '5+ Bedroom' },
+    { value: 'Office Space', label: 'Office Space' },
+    { value: 'Retail Space', label: 'Retail Space' },
+    { value: 'Industrial Land', label: 'Industrial Land' },
+    { value: 'Commercial Project', label: 'Commercial Project' }
   ]
   const developers = ['Emaar Properties', 'Damac Properties', 'Aldar Properties', 'Nakheel', 'Omniyat']
   const amenities = ['Pool', 'Gym', 'Parking', 'Security', 'Concierge', 'Beach', 'Marina', 'Mall']
@@ -102,6 +107,24 @@ export default function FilterPanel({ filters, setFilters }) {
           Filter Properties
         </h2>
 
+        {/* Dynamic Area Search */}
+        <div className="mb-4">
+          <input
+            type="text"
+            className="w-full px-4 py-2 rounded-lg border border-slate-700 bg-slate-900 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-400"
+            placeholder="Search area (e.g., Malad West, Dubai Marina)"
+            value={areaSearch}
+            onChange={e => {
+              setAreaSearch(e.target.value)
+              // Update filters.area to array with search value if not empty, else []
+              setFilters({
+                ...filters,
+                area: e.target.value ? [e.target.value] : []
+              })
+            }}
+          />
+        </div>
+
         <FilterSection title="Budget Range" filterType="budget" isRange={true} />
         <FilterSection title="Area / Location" filterType="area" options={areas} />
         <FilterSection title="Property Type" filterType="propertyType" options={propertyTypes} />
@@ -110,14 +133,17 @@ export default function FilterPanel({ filters, setFilters }) {
 
         {(filters.area.length > 0 || filters.propertyType.length > 0 || filters.developer.length > 0 || filters.amenities.length > 0) && (
           <button
-            onClick={() => setFilters({
-              budget: { min: 0, max: 5000000 },
-              area: [],
-              propertyType: [],
-              developer: [],
-              bedrooms: [],
-              amenities: []
-            })}
+            onClick={() => {
+              setAreaSearch('')
+              setFilters({
+                budget: { min: 0, max: 5000000 },
+                area: [],
+                propertyType: [],
+                developer: [],
+                bedrooms: [],
+                amenities: []
+              })
+            }}
             className="w-full mt-4 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-gray-300 rounded-lg flex items-center justify-center gap-2 transition-colors"
           >
             <X size={16} />

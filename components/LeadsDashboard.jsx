@@ -114,8 +114,8 @@ export default function LeadsDashboard() {
     <div className="pt-24 pb-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">Lead Management Dashboard</h1>
-          <p className="text-gray-400">Track, manage, and follow up with your leads</p>
+          <h1 className="text-3xl sm:text-4xl font-bold mb-2" style={{ color: '#0a2e6d' }}>Lead Management Dashboard</h1>
+          <p style={{ color: '#00e676' }}>Track, manage, and follow up with your leads</p>
         </div>
 
         {/* Statistics Cards */}
@@ -128,7 +128,7 @@ export default function LeadsDashboard() {
               { label: 'Cold', value: statistics.cold, color: 'from-blue-600 to-cyan-600', icon: '❄️' },
               { label: 'Duplicates', value: statistics.duplicates, color: 'from-slate-600 to-slate-700', icon: '⚠️' }
             ].map((stat, i) => (
-              <div key={i} className={`bg-gradient-to-br ${stat.color} rounded-lg p-4 text-white shadow-lg`}>
+              <div key={i} className="rounded-lg p-4 shadow-lg" style={{ background: 'linear-gradient(135deg, #0a2e6d 0%, #00e676 100%)', color: '#fff' }}>
                 <p className="text-sm opacity-90">{stat.label}</p>
                 <p className="text-3xl font-bold mt-2">{stat.value}</p>
               </div>
@@ -152,8 +152,8 @@ export default function LeadsDashboard() {
                   onClick={() => setFilterType(filter.value)}
                   className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
                     filterType === filter.value
-                      ? 'bg-cyan-600 text-white'
-                      : 'bg-slate-800 text-gray-300 hover:bg-slate-700'
+                      ? 'bg-gradient-to-r from-[#0a2e6d] to-[#00e676] text-white'
+                      : 'bg-white text-[#0a2e6d] border border-[#00e676] hover:bg-[#e3fcec]'
                   }`}
                 >
                   {filter.label}
@@ -163,7 +163,8 @@ export default function LeadsDashboard() {
           </div>
           <button
             onClick={() => downloadLeadsCSV()}
-            className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold flex items-center gap-2 transition-all"
+            className="px-6 py-2 rounded-lg font-semibold flex items-center gap-2 transition-all"
+            style={{ background: 'linear-gradient(90deg, #0a2e6d 0%, #00e676 100%)', color: '#fff' }}
           >
             <Download size={18} />
             Export CSV
@@ -184,23 +185,25 @@ export default function LeadsDashboard() {
               return (
                 <div
                   key={lead.id}
-                  className="bg-slate-800/50 border border-slate-700 rounded-xl overflow-hidden hover:border-cyan-600/50 transition-all"
+                  className="rounded-xl overflow-hidden transition-all"
+                  style={{ background: 'rgba(10,46,109,0.07)', border: '2px solid #00e676' }}
                 >
                   {/* Lead Header */}
                   <button
                     onClick={() => setExpandedLead(expandedLead === lead.id ? null : lead.id)}
-                    className="w-full p-6 flex items-start justify-between gap-4 hover:bg-slate-800/50 transition-colors"
+                    className="w-full p-6 flex items-start justify-between gap-4 transition-colors"
+                    style={{ background: 'rgba(0,230,118,0.04)' }}
                   >
                     <div className="flex-1 text-left">
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-lg font-bold text-white">{lead.customerInfo.name}</h3>
+                        <h3 className="text-lg font-bold" style={{ color: '#0a2e6d' }}>{lead.customerInfo.name}</h3>
                         {lead.isDuplicate && (
                           <span className="px-2 py-1 bg-yellow-600/30 border border-yellow-600/50 rounded text-xs font-semibold text-yellow-400">
                             DUPLICATE
                           </span>
                         )}
                       </div>
-                      <div className="flex flex-wrap gap-4 text-sm text-gray-400">
+                      <div className="flex flex-wrap gap-4 text-sm" style={{ color: '#0a2e6d' }}>
                         <span>📧 {lead.customerInfo.email}</span>
                         <span>📱 {lead.customerInfo.phone || 'No phone'}</span>
                         <span>💰 {lead.customerInfo.budget || 'No budget'}</span>
@@ -208,7 +211,7 @@ export default function LeadsDashboard() {
                     </div>
 
                     {/* Temperature Badge */}
-                    <div className={`bg-gradient-to-br ${getTemperatureColor(lead.temperature)} px-4 py-2 rounded-lg flex items-center gap-2 whitespace-nowrap`}>
+                    <div className="px-4 py-2 rounded-lg flex items-center gap-2 whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #00e676 0%, #0a2e6d 100%)', color: '#fff' }}>
                       <TempIcon size={18} />
                       <span className="font-semibold capitalize">{lead.temperature}</span>
                     </div>
@@ -223,12 +226,13 @@ export default function LeadsDashboard() {
 
                   {/* Lead Details (Expanded) */}
                   {showReengage && (
-                    <div className="p-4 bg-yellow-100 border-l-4 border-yellow-500 mb-4 rounded">
-                      <div className="mb-2 font-semibold text-yellow-900">Welcome back! We noticed you haven’t booked with us yet.</div>
-                      <div className="mb-2 text-yellow-800">Would you like to continue with our AI assistant or connect with a human expert?</div>
+                    <div className="p-4 mb-4 rounded" style={{ background: '#fffde7', borderLeft: '4px solid #ffd600' }}>
+                      <div className="mb-2 font-semibold" style={{ color: '#0a2e6d' }}>Welcome back! We noticed you haven’t booked with us yet.</div>
+                      <div className="mb-2" style={{ color: '#00e676' }}>Would you like to continue with our AI assistant or connect with a human expert?</div>
                       <div className="flex gap-4">
                         <button
-                          className="px-4 py-2 bg-blue-600 text-white rounded font-semibold"
+                          className="px-4 py-2 rounded font-semibold"
+                          style={{ background: 'linear-gradient(90deg, #0a2e6d 0%, #00e676 100%)', color: '#fff' }}
                           onClick={async () => {
                             // Send WhatsApp to client
                             await fetch('/api/send-whatsapp', {
@@ -250,7 +254,8 @@ export default function LeadsDashboard() {
                           }}
                         >Continue with AI</button>
                         <button
-                          className="px-4 py-2 bg-green-600 text-white rounded font-semibold"
+                          className="px-4 py-2 rounded font-semibold"
+                          style={{ background: 'linear-gradient(90deg, #00e676 0%, #0a2e6d 100%)', color: '#fff' }}
                           onClick={() => {
                             markReengagementShown(lead.id);
                             cancelNoContactNotification();
@@ -262,25 +267,26 @@ export default function LeadsDashboard() {
                     </div>
                   )}
                   {expandedLead === lead.id && (
-                    <div className="border-t border-slate-700 p-6 bg-gray-900/50 space-y-4">
+                    <div className="border-t p-6 space-y-4" style={{ borderColor: '#00e676', background: 'rgba(10,46,109,0.04)' }}>
                       {/* Properties Interested */}
                       <div>
-                        <h4 className="text-sm font-semibold text-gray-300 mb-2">Properties Interested ({lead.selectedProjects.length})</h4>
+                        <h4 className="text-sm font-semibold mb-2" style={{ color: '#0a2e6d' }}>Properties Interested ({lead.selectedProjects.length})</h4>
                         <div className="space-y-2">
                           {lead.selectedProjects.map(project => (
-                            <div key={project.id} className="p-3 bg-slate-800 rounded-lg flex justify-between items-start">
+                            <div key={project.id} className="p-3 rounded-lg flex justify-between items-start" style={{ background: '#e3fcec' }}>
                               <div>
-                                <p className="font-semibold text-white">{project.name}</p>
-                                <p className="text-xs text-gray-400">{project.location}</p>
+                                <p className="font-semibold" style={{ color: '#0a2e6d' }}>{project.name}</p>
+                                <p className="text-xs" style={{ color: '#00e676' }}>{project.location}</p>
                               </div>
                               <div className="text-right flex items-center gap-2">
                                 <div className="text-right">
-                                  <p className="font-bold text-cyan-400">{(project.price / 1000000).toFixed(1)}M AED</p>
-                                  <p className="text-xs text-green-400">ROI: {project.roi}%</p>
+                                  <p className="font-bold" style={{ color: '#00e676' }}>{(project.price / 1000000).toFixed(1)}M AED</p>
+                                  <p className="text-xs" style={{ color: '#0a2e6d' }}>ROI: {project.roi}%</p>
                                 </div>
                                 <button
                                   onClick={() => { removeProjectFromLead(lead.id, project.id); loadLeads() }}
-                                  className="px-3 py-1 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm"
+                                  className="px-3 py-1 rounded-lg text-sm"
+                                  style={{ background: '#ff5252', color: '#fff' }}
                                 >
                                   Remove
                                 </button>
@@ -290,7 +296,8 @@ export default function LeadsDashboard() {
                           {/* Add project picker */}
                           <div className="mt-2 flex gap-2">
                             <select
-                              className="flex-1 px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white"
+                              className="flex-1 px-3 py-2 rounded-lg"
+                              style={{ background: '#fff', border: '1px solid #00e676', color: '#0a2e6d' }}
                               value={discussionDrafts[`add_project_${lead.id}`] || ''}
                               onChange={(e) => setDiscussionDrafts(prev => ({ ...prev, [`add_project_${lead.id}`]: e.target.value }))}
                             >
@@ -311,7 +318,8 @@ export default function LeadsDashboard() {
                                   }
                                 }
                               }}
-                              className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold"
+                              className="px-4 py-2 rounded-lg font-semibold"
+                              style={{ background: 'linear-gradient(90deg, #00e676 0%, #0a2e6d 100%)', color: '#fff' }}
                             >
                               Add Project
                             </button>
@@ -321,7 +329,7 @@ export default function LeadsDashboard() {
 
                       {/* Temperature Selector */}
                       <div>
-                        <h4 className="text-sm font-semibold text-gray-300 mb-2">Update Temperature</h4>
+                        <h4 className="text-sm font-semibold mb-2" style={{ color: '#0a2e6d' }}>Update Temperature</h4>
                         <div className="grid grid-cols-3 gap-2">
                           {[
                             { value: LEAD_TEMPERATURE.HOT, label: 'Hot', icon: Flame },
@@ -335,8 +343,8 @@ export default function LeadsDashboard() {
                                 onClick={() => handleTemperatureChange(lead.id, temp.value)}
                                 className={`px-4 py-2 rounded-lg font-semibold transition-all flex items-center justify-center gap-2 ${
                                   lead.temperature === temp.value
-                                    ? `bg-gradient-to-r ${getTemperatureColor(temp.value).split(' ')[0]} text-white`
-                                    : 'bg-slate-700 text-gray-300 hover:bg-slate-600'
+                                    ? 'bg-gradient-to-r from-[#00e676] to-[#0a2e6d] text-white'
+                                    : 'bg-white text-[#0a2e6d] border border-[#00e676] hover:bg-[#e3fcec]'
                                 }`}
                               >
                                 <IconComp size={16} />
@@ -349,39 +357,42 @@ export default function LeadsDashboard() {
 
                       {/* Conversation History */}
                       <div>
-                        <h4 className="text-sm font-semibold text-gray-300 mb-2">Discussion Summary</h4>
+                        <h4 className="text-sm font-semibold mb-2" style={{ color: '#0a2e6d' }}>Discussion Summary</h4>
                         <textarea
                           value={discussionDrafts[lead.id] || ''}
                           onChange={(e) => setDiscussionDrafts(prev => ({ ...prev, [lead.id]: e.target.value }))}
-                          className="w-full px-4 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-gray-400 resize-none h-24"
+                          className="w-full px-4 py-2 rounded-lg resize-none h-24"
+                          style={{ background: '#fff', border: '1px solid #00e676', color: '#0a2e6d' }}
                         />
                         <div className="mt-2 flex gap-2">
                           <button
                             onClick={() => { updateDiscussionSummary(lead.id, discussionDrafts[lead.id] || '') ; loadLeads() }}
-                            className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg font-semibold"
+                            className="px-4 py-2 rounded-lg font-semibold"
+                            style={{ background: 'linear-gradient(90deg, #0a2e6d 0%, #00e676 100%)', color: '#fff' }}
                           >
                             Save Summary
                           </button>
                           <button
                             onClick={() => { setDiscussionDrafts(prev => ({ ...prev, [lead.id]: lead.discussionSummary || '' })) }}
-                            className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-gray-200 rounded-lg font-semibold"
+                            className="px-4 py-2 rounded-lg font-semibold"
+                            style={{ background: '#e3fcec', color: '#0a2e6d' }}
                           >
                             Reset
                           </button>
                         </div>
 
-                        <h4 className="text-sm font-semibold text-gray-300 mb-2">Conversation History</h4>
+                        <h4 className="text-sm font-semibold mb-2" style={{ color: '#0a2e6d' }}>Conversation History</h4>
                         <div className="space-y-2 max-h-40 overflow-y-auto">
                           {lead.conversationHistory.length === 0 ? (
                             <p className="text-xs text-gray-500">No conversation history yet</p>
                           ) : (
                             lead.conversationHistory.map((entry, i) => (
-                              <div key={i} className="p-2 bg-slate-800 rounded text-xs">
+                              <div key={i} className="p-2 rounded text-xs" style={{ background: '#e3fcec' }}>
                                 <div className="flex justify-between mb-1">
-                                  <span className="font-semibold text-cyan-400 capitalize">{entry.type}</span>
-                                  <span className="text-gray-500">{new Date(entry.timestamp).toLocaleDateString()}</span>
+                                  <span className="font-semibold capitalize" style={{ color: '#00e676' }}>{entry.type}</span>
+                                  <span style={{ color: '#0a2e6d' }}>{new Date(entry.timestamp).toLocaleDateString()}</span>
                                 </div>
-                                <p className="text-gray-300">{entry.content}</p>
+                                <p style={{ color: '#0a2e6d' }}>{entry.content}</p>
                               </div>
                             ))
                           )}
@@ -397,7 +408,8 @@ export default function LeadsDashboard() {
                             placeholder="Add conversation note..."
                             value={notesDrafts[lead.id] || ''}
                             onChange={(e) => setNotesDrafts(prev => ({ ...prev, [lead.id]: e.target.value }))}
-                            className="flex-1 px-4 py-2 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors text-sm"
+                            className="flex-1 px-4 py-2 rounded-lg focus:outline-none transition-colors text-sm"
+                            style={{ background: '#fff', border: '1px solid #00e676', color: '#0a2e6d' }}
                             onKeyPress={(e) => {
                               if (e.key === 'Enter') {
                                 handleAddNote(lead.id, notesDrafts[lead.id] || '')
@@ -406,7 +418,8 @@ export default function LeadsDashboard() {
                           />
                           <button
                             onClick={() => handleAddNote(lead.id, notesDrafts[lead.id] || '')}
-                            className="px-4 py-2 bg-cyan-600 hover:bg-cyan-700 text-white rounded-lg font-semibold transition-all"
+                            className="px-4 py-2 rounded-lg font-semibold transition-all"
+                            style={{ background: 'linear-gradient(90deg, #0a2e6d 0%, #00e676 100%)', color: '#fff' }}
                           >
                             Add
                           </button>
@@ -415,20 +428,20 @@ export default function LeadsDashboard() {
 
                       {/* Appointments / Schedule */}
                       <div>
-                        <h4 className="text-sm font-semibold text-gray-300 mb-2">Schedule Appointment</h4>
+                        <h4 className="text-sm font-semibold mb-2" style={{ color: '#0a2e6d' }}>Schedule Appointment</h4>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                          <select className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white" value={appointmentDrafts[lead.id]?.type || 'visit'} onChange={(e) => setAppointmentDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), type: e.target.value } }))}>
+                          <select className="px-3 py-2 rounded-lg" style={{ background: '#fff', border: '1px solid #00e676', color: '#0a2e6d' }} value={appointmentDrafts[lead.id]?.type || 'visit'} onChange={(e) => setAppointmentDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), type: e.target.value } }))}>
                             <option value="call">Call</option>
                             <option value="meeting">Meeting</option>
                             <option value="visit">Visit</option>
                           </select>
-                          <input type="datetime-local" className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white" value={appointmentDrafts[lead.id]?.start || ''} onChange={(e) => setAppointmentDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), start: e.target.value } }))} />
-                          <input type="number" min="15" className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white" placeholder="Duration (mins)" value={appointmentDrafts[lead.id]?.duration || 60} onChange={(e) => setAppointmentDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), duration: Number(e.target.value) } }))} />
+                          <input type="datetime-local" className="px-3 py-2 rounded-lg" style={{ background: '#fff', border: '1px solid #00e676', color: '#0a2e6d' }} value={appointmentDrafts[lead.id]?.start || ''} onChange={(e) => setAppointmentDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), start: e.target.value } }))} />
+                          <input type="number" min="15" className="px-3 py-2 rounded-lg" style={{ background: '#fff', border: '1px solid #00e676', color: '#0a2e6d' }} placeholder="Duration (mins)" value={appointmentDrafts[lead.id]?.duration || 60} onChange={(e) => setAppointmentDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), duration: Number(e.target.value) } }))} />
                         </div>
                         <div className="mt-2 grid grid-cols-1 gap-2">
-                          <input type="text" placeholder="Location (optional)" className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white" value={appointmentDrafts[lead.id]?.location || ''} onChange={(e) => setAppointmentDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), location: e.target.value } }))} />
-                          <input type="text" placeholder="Reminders in minutes (comma separated) e.g. 60,30,10" className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white" value={appointmentDrafts[lead.id]?.reminders || '60,30,10'} onChange={(e) => setAppointmentDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), reminders: e.target.value } }))} />
-                          <textarea placeholder="Notes" className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white" value={appointmentDrafts[lead.id]?.notes || ''} onChange={(e) => setAppointmentDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), notes: e.target.value } }))} />
+                          <input type="text" placeholder="Location (optional)" className="px-3 py-2 rounded-lg" style={{ background: '#fff', border: '1px solid #00e676', color: '#0a2e6d' }} value={appointmentDrafts[lead.id]?.location || ''} onChange={(e) => setAppointmentDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), location: e.target.value } }))} />
+                          <input type="text" placeholder="Reminders in minutes (comma separated) e.g. 60,30,10" className="px-3 py-2 rounded-lg" style={{ background: '#fff', border: '1px solid #00e676', color: '#0a2e6d' }} value={appointmentDrafts[lead.id]?.reminders || '60,30,10'} onChange={(e) => setAppointmentDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), reminders: e.target.value } }))} />
+                          <textarea placeholder="Notes" className="px-3 py-2 rounded-lg" style={{ background: '#fff', border: '1px solid #00e676', color: '#0a2e6d' }} value={appointmentDrafts[lead.id]?.notes || ''} onChange={(e) => setAppointmentDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), notes: e.target.value } }))} />
                           <div className="flex gap-2">
                             <button onClick={async () => {
                               const d = appointmentDrafts[lead.id] || {}
@@ -442,28 +455,28 @@ export default function LeadsDashboard() {
                                 setAppointmentDrafts(prev => ({ ...prev, [lead.id]: {} }))
                                 alert('Appointment scheduled')
                               } catch (e) { console.error(e); alert('Failed to schedule') }
-                            }} className="px-4 py-2 bg-emerald-600 rounded text-white">Schedule</button>
-                            <button onClick={() => setAppointmentDrafts(prev => ({ ...prev, [lead.id]: {} }))} className="px-4 py-2 bg-slate-700 rounded text-gray-200">Reset</button>
+                            }} className="px-4 py-2 rounded-lg font-semibold" style={{ background: 'linear-gradient(90deg, #00e676 0%, #0a2e6d 100%)', color: '#fff' }}>Schedule</button>
+                            <button onClick={() => setAppointmentDrafts(prev => ({ ...prev, [lead.id]: {} }))} className="px-4 py-2 rounded-lg font-semibold" style={{ background: '#e3fcec', color: '#0a2e6d' }}>Reset</button>
                           </div>
                         </div>
                       </div>
 
                       {/* Partner Sharing */}
                       <div>
-                        <h4 className="text-sm font-semibold text-gray-300 mb-2">Partner Sharing</h4>
+                        <h4 className="text-sm font-semibold mb-2" style={{ color: '#0a2e6d' }}>Partner Sharing</h4>
                         <div className="space-y-2">
                           {(lead.sharedWith || []).map((s, idx) => (
-                            <div key={idx} className="p-3 bg-slate-800 rounded-lg flex justify-between items-center">
+                            <div key={idx} className="p-3 rounded-lg flex justify-between items-center" style={{ background: '#e3fcec' }}>
                               <div>
-                                <p className="font-semibold text-white">{s.partnerName || s.partnerId}</p>
-                                <p className="text-xs text-gray-400">Status: {s.status}</p>
-                                <p className="text-xs text-gray-400">Consent: {s.consent ? Object.keys(s.consent).filter(k => s.consent[k]).join(', ') : '—'}</p>
+                                <p className="font-semibold" style={{ color: '#0a2e6d' }}>{s.partnerName || s.partnerId}</p>
+                                <p className="text-xs" style={{ color: '#00e676' }}>Status: {s.status}</p>
+                                <p className="text-xs" style={{ color: '#00e676' }}>Consent: {s.consent ? Object.keys(s.consent).filter(k => s.consent[k]).join(', ') : '—'}</p>
                               </div>
                             </div>
                           ))}
 
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                            <select className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white" value={partnerDrafts[lead.id]?.id || ''} onChange={(e) => {
+                            <select className="px-3 py-2 rounded-lg" style={{ background: '#fff', border: '1px solid #00e676', color: '#0a2e6d' }} value={partnerDrafts[lead.id]?.id || ''} onChange={(e) => {
                               const pid = e.target.value
                               const p = partners.find(pp => pp.id === pid)
                               setPartnerDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), id: pid, name: p?.name || '', url: p?.callbackUrl || '', shareContact: p?.shareContact ?? true, shareBudget: p?.shareBudget ?? true, shareRequirements: p?.shareRequirements ?? true } }))
@@ -471,19 +484,19 @@ export default function LeadsDashboard() {
                               <option value="">-- Select partner (or fill new) --</option>
                               {partners.map(p => <option key={p.id} value={p.id}>{p.name} ({p.type})</option>)}
                             </select>
-                            <input placeholder="Partner callback URL (optional)" className="px-3 py-2 bg-slate-800 border border-slate-700 rounded-lg text-white" value={partnerDrafts[lead.id]?.url || ''} onChange={(e) => setPartnerDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), url: e.target.value } }))} />
+                            <input placeholder="Partner callback URL (optional)" className="px-3 py-2 rounded-lg" style={{ background: '#fff', border: '1px solid #00e676', color: '#0a2e6d' }} value={partnerDrafts[lead.id]?.url || ''} onChange={(e) => setPartnerDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), url: e.target.value } }))} />
                             <div className="flex items-center gap-2">
-                              <label className="text-sm text-gray-300">Share contact</label>
+                              <label className="text-sm" style={{ color: '#0a2e6d' }}>Share contact</label>
                               <input type="checkbox" checked={partnerDrafts[lead.id]?.shareContact ?? true} onChange={(e) => setPartnerDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), shareContact: e.target.checked } }))} />
                             </div>
                           </div>
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-2">
                             <div className="flex items-center gap-2">
-                              <label className="text-sm text-gray-300">Share budget</label>
+                              <label className="text-sm" style={{ color: '#0a2e6d' }}>Share budget</label>
                               <input type="checkbox" checked={partnerDrafts[lead.id]?.shareBudget ?? true} onChange={(e) => setPartnerDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), shareBudget: e.target.checked } }))} />
                             </div>
                             <div className="flex items-center gap-2">
-                              <label className="text-sm text-gray-300">Share requirements</label>
+                              <label className="text-sm" style={{ color: '#0a2e6d' }}>Share requirements</label>
                               <input type="checkbox" checked={partnerDrafts[lead.id]?.shareRequirements ?? true} onChange={(e) => setPartnerDrafts(prev => ({ ...prev, [lead.id]: { ...(prev[lead.id]||{}), shareRequirements: e.target.checked } }))} />
                             </div>
                             <div className="flex gap-2">
@@ -499,21 +512,21 @@ export default function LeadsDashboard() {
                                   loadLeads()
                                   alert('Lead shared with partner')
                                 } catch (e) { console.error(e); alert('Failed to share') }
-                              }} className="px-4 py-2 bg-blue-600 rounded text-white">Share</button>
-                              <button onClick={() => setPartnerDrafts(prev => ({ ...prev, [lead.id]: {} }))} className="px-4 py-2 bg-slate-700 rounded text-gray-200">Reset</button>
+                              }} className="px-4 py-2 rounded-lg font-semibold" style={{ background: 'linear-gradient(90deg, #0a2e6d 0%, #00e676 100%)', color: '#fff' }}>Share</button>
+                              <button onClick={() => setPartnerDrafts(prev => ({ ...prev, [lead.id]: {} }))} className="px-4 py-2 rounded-lg font-semibold" style={{ background: '#e3fcec', color: '#0a2e6d' }}>Reset</button>
                             </div>
                           </div>
                         </div>
                       </div>
 
                       {/* Meta Information */}
-                      <div className="pt-4 border-t border-slate-700 flex gap-4 text-xs text-gray-500">
+                      <div className="pt-4 border-t flex gap-4 text-xs" style={{ borderColor: '#00e676', color: '#0a2e6d' }}>
                         <div>
-                          <span className="block text-gray-400">Created</span>
+                          <span className="block" style={{ color: '#00e676' }}>Created</span>
                           {new Date(lead.createdAt).toLocaleDateString()}
                         </div>
                         <div>
-                          <span className="block text-gray-400">Last Updated</span>
+                          <span className="block" style={{ color: '#00e676' }}>Last Updated</span>
                           {new Date(lead.lastUpdated).toLocaleDateString()}
                         </div>
                       </div>

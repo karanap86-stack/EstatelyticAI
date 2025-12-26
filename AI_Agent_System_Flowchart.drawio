@@ -1,0 +1,124 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.2.9">
+  <diagram name="AI Agent System Flowchart" id="AI_AGENT_SYSTEM_FLOWCHART">
+    <mxGraphModel dx="786" dy="425" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" value="Start: New Task" vertex="1">
+          <mxGeometry height="60" width="120" x="120" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="Task Type?" vertex="1">
+          <mxGeometry height="80" width="120" x="120" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Posting/Content Update/Listing" vertex="1">
+          <mxGeometry height="60" width="180" x="10" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Market Insights (LinkedIn)" vertex="1">
+          <mxGeometry height="60" width="180" x="220" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Client/Developer/Partner Work" vertex="1">
+          <mxGeometry height="60" width="180" x="430" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="7" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="Country Manager Available?" vertex="1">
+          <mxGeometry height="80" width="180" x="10" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="8" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="Backup Manager Available?" vertex="1">
+          <mxGeometry height="80" width="180" x="10" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;" value="Split Tasks: Main &amp; Backup Both Work" vertex="1">
+          <mxGeometry height="60" width="180" x="10" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffde7;" value="Main Manager Handles All" vertex="1">
+          <mxGeometry height="60" width="180" x="10" y="580" as="geometry" />
+        </mxCell>
+        <mxCell id="11" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe0b2;" value="Backup Manager Handles All" vertex="1">
+          <mxGeometry height="60" width="180" x="10" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcdd2;" value="Escalate to Global AI Admin / Promote Local Agent" vertex="1">
+          <mxGeometry height="60" width="180" x="10" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="13" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;" value="Task Completed &amp; Logged" vertex="1">
+          <mxGeometry height="60" width="180" x="10" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1bee7;" value="LinkedIn Insights Agent Posts (every 15 days/country)" vertex="1">
+          <mxGeometry height="60" width="180" x="220" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="15" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;" value="Task Completed &amp; Logged" vertex="1">
+          <mxGeometry height="60" width="180" x="220" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#bbdefb;" value="Assigned to Local Agent" vertex="1">
+          <mxGeometry height="60" width="180" x="430" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="17" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c8e6c9;" value="Task Completed &amp; Logged" vertex="1">
+          <mxGeometry height="60" width="180" x="430" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="18" parent="1" style="hexagon;whiteSpace=wrap;html=1;fillColor=#f3e5f5;" value="Health Check (6h)\nAdaptive Load Sharing" vertex="1">
+          <mxGeometry height="80" width="180" x="650" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="19" edge="1" parent="1" source="2" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="20" edge="1" parent="1" source="3" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="21" edge="1" parent="1" source="3" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="22" edge="1" parent="1" source="3" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="23" edge="1" parent="1" source="4" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="24" edge="1" parent="1" source="7" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="25" edge="1" parent="1" source="8" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="26" edge="1" parent="1" source="8" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="27" edge="1" parent="1" source="7" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="28" edge="1" parent="1" source="11" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="29" edge="1" parent="1" source="10" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="30" edge="1" parent="1" source="9" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="31" edge="1" parent="1" source="7" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="32" edge="1" parent="1" source="12" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="33" edge="1" parent="1" source="5" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="34" edge="1" parent="1" source="14" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="35" edge="1" parent="1" source="6" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="36" edge="1" parent="1" source="16" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;" target="17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="37" edge="1" parent="1" source="18" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;dashed=1;" target="7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="38" edge="1" parent="1" source="18" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;dashed=1;" target="14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="39" edge="1" parent="1" source="18" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;html=1;dashed=1;" target="16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
