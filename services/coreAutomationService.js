@@ -59,12 +59,17 @@ export async function syncLeadsFromPartnerCRM(partnerInfo) {
   }
 }
 
-// Example: Periodically sync all partners (to be called by a scheduler)
+// Periodically sync all partners (to be called by a scheduler or cron job)
 export async function syncAllPartners(partners) {
   for (const partner of partners) {
-    const updatedLeads = await syncLeadsFromPartnerCRM(partner);
-    // Update your system with new lead statuses (not shown)
-    // Notify AI/human agents as needed
+    try {
+      const updatedLeads = await syncLeadsFromPartnerCRM(partner);
+      // TODO: Update your system with new lead statuses (implement DB update logic here)
+      // TODO: Notify AI/human agents as needed (integrate with notificationService)
+    } catch (e) {
+      console.error(`[syncAllPartners] Failed for partner ${partner.name}:`, e.message);
+      // Optionally notify admin of sync failure
+    }
   }
 }
 // Disposition mapping for AI/human agents and CRM integration
@@ -86,22 +91,29 @@ import {
 // setInterval(autoUpdateCrmMappings, 1000 * 60 * 60 * 24 * 90);
 import { checkCountryManagerHealth, getCountryManagers } from './agentService';
 
+
 // --- Automated Health Checks, Escalation, and Adaptive Load Sharing ---
 const HEALTH_CHECK_INTERVAL = 1000 * 60 * 60 * 6; // every 6 hours
 setInterval(() => {
-  const issues = checkCountryManagerHealth();
-  if (issues.length && issues[0] !== 'All countries have exactly one main and one backup manager.') {
-    // Log and escalate issues
-    console.warn('[HEALTH CHECK] Issues detected:', issues);
-    // Notify admin or global AI agent
-    notifyAdmin({
-      type: 'HEALTH_CHECK_ISSUE',
-      issues
-    });
-  } else {
-    console.log('[HEALTH CHECK] All country manager assignments healthy.');
+  try {
+    const issues = checkCountryManagerHealth();
+    if (issues.length && issues[0] !== 'All countries have exactly one main and one backup manager.') {
+      // Log and escalate issues
+      console.warn('[HEALTH CHECK] Issues detected:', issues);
+      // Notify admin or global AI agent
+      notifyAdmin({
+        type: 'HEALTH_CHECK_ISSUE',
+        issues
+      });
+    } else {
+      console.log('[HEALTH CHECK] All country manager assignments healthy.');
+    }
+  } catch (e) {
+    console.error('[HEALTH CHECK] Exception:', e.message);
+    // Optionally notify admin of health check failure
   }
 }, HEALTH_CHECK_INTERVAL);
+
 
 // Adaptive load threshold logic
 let adaptiveLoadThreshold = 5;
@@ -113,8 +125,10 @@ function updateAdaptiveThreshold() {
   if (avg > 10 * 60 * 1000) adaptiveLoadThreshold = 3; // if avg > 10 min, lower threshold
   else if (avg < 3 * 60 * 1000) adaptiveLoadThreshold = 8; // if avg < 3 min, raise threshold
   else adaptiveLoadThreshold = 5;
+  // Optionally notify admin or log threshold changes
 }
 setInterval(updateAdaptiveThreshold, LOAD_METRICS_INTERVAL);
+
 
 // Overload/Escalation logic: if both managers unavailable, escalate to global AI admin
 function escalateIfNoManagers(country, managers) {
@@ -126,6 +140,7 @@ function escalateIfNoManagers(country, managers) {
       message: `[ESCALATION] No managers available for ${country}. Escalating to global admin.`
     });
     console.error(`[ESCALATION] No managers available for ${country}. Escalating to global admin.`);
+    // TODO: Integrate with AI admin escalation workflow if available
   }
 }
 
@@ -150,24 +165,30 @@ export function getPropertyTypesForRegion(regionKey, category) {
   return regionData.categories[category] || [];
 }
 
+
 // Post best-selling project to all platforms once a week
 setInterval(() => {
-  // Dynamically get all regions from propertyTypesByRegion
-  const regions = Object.keys(propertyTypesByRegion);
-  regions.forEach(regionKey => {
-    const bestProject = getBestSellingProjectByRegion(regionKey);
-    if (bestProject) {
-      // For each property type in this region, post best seller
-      const allTypes = getPropertyTypesForRegion(regionKey);
-      allTypes.forEach(typeObj => {
-        postToAllPlatforms({
-          region: regionKey,
-          content: `🏆 Best Seller: ${bestProject.name} (${typeObj.label}) in ${regionKey}!\n${bestProject.description}`
+  try {
+    // Dynamically get all regions from propertyTypesByRegion
+    const regions = Object.keys(propertyTypesByRegion);
+    regions.forEach(regionKey => {
+      const bestProject = getBestSellingProjectByRegion(regionKey);
+      if (bestProject) {
+        // For each property type in this region, post best seller
+        const allTypes = getPropertyTypesForRegion(regionKey);
+        allTypes.forEach(typeObj => {
+          postToAllPlatforms({
+            region: regionKey,
+            content: `🏆 Best Seller: ${bestProject.name} (${typeObj.label}) in ${regionKey}!\n${bestProject.description}`
+          });
         });
-      });
-    }
-  });
-}, 1000 * 60 * 60 * 24 * 7)
+      }
+    });
+  } catch (e) {
+    console.error('[Marketing Scheduler] Exception:', e.message);
+    // Optionally notify admin of scheduler failure
+  }
+}, 1000 * 60 * 60 * 24 * 7);
 
 // --- LinkedIn Market Insights Posting (every 15 days, offset per country) ---
 import { getLinkedInInsightsAgent } from './agentService';
