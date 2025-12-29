@@ -6,7 +6,8 @@ EstatelyticAI – Investor Pitch Deck (Slide-by-Slide Script)
 
 
 Slide 1: Cover
-- ![EstatelyticAI Logo](./EstatelyticAI_logo.png)
+- ![EstatelyticAI Logo](./assets/EstatelyticAI_Logo_Official.svg)
+  **[Logo includes "Made in INDIA" badge with Indian flag]**
 - EstatelyticAI
 - “The Next Era of Real Estate: Intelligent, Instant, Infinite.”
 - Karan A. P. – Founder & CEO

@@ -7,8 +7,7 @@
 ## 1. Vision & Opportunity
 - Transforming global real estate discovery and investment with AI-driven, privacy-first automation.
 - Unlocking seamless, high-value property experiences for investors, buyers, and developers.
-*Visual: World map, real estate skyline, or platform logo*
-
+*Visual: Use EstatelyticAI_Logo_Official.svg (with "Made in INDIA" badge) - world map, real estate skyline background*
 ## 2. Problem
 - Real estate discovery is fragmented, slow, and lacks transparency.
 - Investors struggle with data overload, unreliable ROI, and poor lead management.
@@ -34,8 +33,7 @@
 - Launched in Dubai, expanded to India and global markets
 - Early adoption by developers, partners, and investors
 - Scalable to any region or property type
-*Visual: Map with expansion arrows, partner logos*
-
+*Visual: Map with expansion arrows, EstatelyticAI_Logo_Icon_Only.svg for branding*
 ## 6. Business Model
 - Commission-based on transactions, value-added services (loans, interiors, rentals, resales)
 - SaaS for developers and partners
@@ -68,6 +66,7 @@
 ---
 
 ## Slide 1: Vision & Differentiators
+**[Use EstatelyticAI_Logo_Official.svg or EstatelyticAI_Logo_Dark_BG.svg for dark slides]**
 - AI-powered, luxury Dubai real estate platform
 - Multi-agent, multi-language, global reach
 - Advanced automation: chat, calls, WhatsApp, email

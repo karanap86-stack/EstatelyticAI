@@ -1,6 +1,6 @@
 EstatelyticAI – Investor Pitch Deck
 The Next Era of Real Estate: Intelligent, Instant, Infinite.
-![EstatelyticAI Logo](./EstatelyticAI_logo.png)
+![EstatelyticAI Logo](./assets/EstatelyticAI_Logo_Official.svg [with Made in INDIA badge])
 
 EstatelyticAI – Pitch Deck
 The Next Era of Real Estate: Intelligent, Instant, Infinite.

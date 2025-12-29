@@ -1,30 +1,36 @@
 # EstatelyticAI Logo Package
 
+✨ **All logos now feature a "Made in INDIA" badge with the Indian national flag (horizontal tricolor with Ashoka Chakra)**
+
 ## 🎨 **Logo Files Available**
 
 ### **1. EstatelyticAI_Logo_Official.svg**
 **Primary logo - Use this everywhere**
-- Dimensions: 800×300px
+- Dimensions: 800×320px
 - Background: White
-- Use for: Website header, presentations, documents, business cards
-
-### **2. EstatelyticAI_Logo_Horizontal.svg**
-**Wide format logo**
+- Badge: India flag with Ashoka Chakra
+- Use for: Website header, presentations, documents, business cards, pitch decks
+20px
+- Background: White
+- Badge: India flag with Ashoka Chakra
+- Use for: Website banners, email signatures, LinkedIn cover photo, letterhead, investor decks
 - Dimensions: 1200×200px
 - Background: White
 - Use for: Website banners, email signatures, LinkedIn cover photo, letterhead
 
 ### **3. EstatelyticAI_Logo_Icon_Only.svg**
 **Icon/Avatar version**
-- Dimensions: 200×200px (square)
+- Dimensions: 220×220px (square)
 - Background: White
+- Badge: India flag with Ashoka Chakra
 - Use for: Social media profile pictures, app icons, favicons, WhatsApp DP
 
 ### **4. EstatelyticAI_Logo_Dark_BG.svg**
 **Dark background version**
-- Dimensions: 800×300px
+- Dimensions: 800×320px
 - Background: Dark (#0f172a)
-- Use for: Dark mode websites, pitch decks with dark slides, video overlays
+- Badge: India flag with brighter Ashoka Chakra for visibility
+- Use for: Dark mode websites, pitch decks with dark slides, video overlays, investor presentations
 
 ---
 

@@ -4,7 +4,7 @@
 
 **The Next Era of Real Estate: Intelligent, Instant, Infinite.**
 
-![Platform Overview](https://img.icons8.com/ios-filled/100/000000/building.png)
+> **[INSERT: assets/EstatelyticAI_Logo_Official.svg here - includes "Made in INDIA" badge]**
 
 ## Introduction
 Dubai Properties Platform is a next-generation, AI-powered real estate solution for global investors, developers, and partners. We deliver a seamless, privacy-first experience for property discovery, comparison, and investment—backed by proprietary automation, deep market intelligence, and automated data validation.
@@ -26,8 +26,7 @@ Dubai Properties Platform is a next-generation, AI-powered real estate solution 
 - ![Dashboard](https://img.icons8.com/ios-filled/50/000000/combo-chart--v1.png) Admin dashboard for real-time reporting, monitoring, and data validation
 - ![Providers](https://img.icons8.com/ios-filled/50/000000/handshake.png) Seamless 3rd-party service provider onboarding
 
-*Add screenshots of your app’s Discover, Compare, and Dashboard screens here for visual impact.*
-
+*Add screenshots of your app’s Discover, Compare, and Dashboard screens here for visual impact.*> *Brand watermark: Use assets/EstatelyticAI_Logo_Icon_Only.svg in corner of screenshots*
 ## Business Model
 - Commission on transactions and value-added services
 - SaaS for developers and partners
