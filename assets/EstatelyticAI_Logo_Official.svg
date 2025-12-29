@@ -1,11 +1,18 @@
-<svg width="800" height="300" xmlns="http://www.w3.org/2000/svg">
+<svg width="800" height="320" xmlns="http://www.w3.org/2000/svg">
   <!-- Background -->
-  <rect width="800" height="300" fill="#ffffff"/>
+  <rect width="800" height="320" fill="#ffffff"/>
   
-  <!-- Icon - Property/Building Symbol with UPI-style element -->
-  <g transform="translate(40, 80)">
-    <!-- Building -->
-    <rect x="0" y="20" width="60" height="80" fill="#667eea" rx="4"/>
+  <!-- Icon - Property/Building Symbol with India flag colors -->
+  <g transform="translate(40, 75)">
+    <!-- Building with gradient -->
+    <defs>
+      <linearGradient id="buildingGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+      </linearGradient>
+    </defs>
+    
+    <rect x="0" y="20" width="60" height="80" fill="url(#buildingGrad)" rx="4"/>
     <rect x="10" y="30" width="12" height="12" fill="#ffffff" opacity="0.9"/>
     <rect x="10" y="50" width="12" height="12" fill="#ffffff" opacity="0.9"/>
     <rect x="10" y="70" width="12" height="12" fill="#ffffff" opacity="0.9"/>
@@ -18,27 +25,57 @@
     <circle cx="70" cy="40" r="6" fill="#f093fb"/>
     <line x1="35" y1="12" x2="65" y2="38" stroke="#764ba2" stroke-width="2" opacity="0.6"/>
     
-    <!-- Checkmark (Trusted symbol) -->
-    <path d="M 65 55 L 75 65 L 85 45" stroke="#4ade80" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- Checkmark with India flag colors (Ashoka Chakra blue) -->
+    <path d="M 65 55 L 75 65 L 85 45" stroke="#000080" stroke-width="3" fill="none" stroke-linecap="round"/>
   </g>
   
   <!-- Main Text - EstatelyticAI -->
-  <text x="140" y="125" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="bold" fill="#1e293b">
+  <text x="140" y="120" font-family="Arial, Helvetica, sans-serif" font-size="52" font-weight="bold" fill="#1e293b">
     Estatelytic<tspan fill="#667eea">AI</tspan>
   </text>
   
   <!-- Tagline Line 1 -->
-  <text x="140" y="165" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600" fill="#667eea">
+  <text x="140" y="160" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="600" fill="#667eea">
     India's Property UPI
   </text>
   
   <!-- Tagline Line 2 -->
-  <text x="140" y="195" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="500" fill="#64748b">
+  <text x="140" y="190" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="500" fill="#64748b">
     Transparent • Tracked • Trusted
   </text>
   
+  <!-- Made in INDIA badge with India Flag -->
+  <g transform="translate(140, 210)">
+    <!-- Badge background -->
+    <rect x="0" y="0" width="170" height="35" rx="17" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+    
+    <!-- India Flag (horizontal stripes) -->
+    <g transform="translate(10, 8)">
+      <!-- Saffron stripe -->
+      <rect x="0" y="0" width="28" height="6" fill="#FF9933"/>
+      <!-- White stripe -->
+      <rect x="0" y="6" width="28" height="6" fill="#ffffff" stroke="#d1d5db" stroke-width="0.3"/>
+      <!-- Green stripe -->
+      <rect x="0" y="12" width="28" height="6" fill="#138808"/>
+      
+      <!-- Ashoka Chakra (navy blue, 24 spokes) -->
+      <circle cx="14" cy="9" r="2.5" fill="none" stroke="#000080" stroke-width="0.3"/>
+      <circle cx="14" cy="9" r="0.4" fill="#000080"/>
+      <!-- 8 main spokes -->
+      <line x1="14" y1="6.5" x2="14" y2="11.5" stroke="#000080" stroke-width="0.2"/>
+      <line x1="16.5" y1="9" x2="11.5" y2="9" stroke="#000080" stroke-width="0.2"/>
+      <line x1="15.8" y1="7.2" x2="12.2" y2="10.8" stroke="#000080" stroke-width="0.2"/>
+      <line x1="15.8" y1="10.8" x2="12.2" y2="7.2" stroke="#000080" stroke-width="0.2"/>
+    </g>
+
+    <!-- Made in INDIA text -->
+    <text x="50" y="21" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" fill="#1e293b">
+      Made in <tspan fill="#FF9933">I</tspan><tspan fill="#000080">N</tspan><tspan fill="#138808">D</tspan><tspan fill="#FF9933">I</tspan><tspan fill="#000080">A</tspan>
+    </text>
+  </g>
+
   <!-- Accent line -->
-  <rect x="140" y="210" width="180" height="3" fill="url(#gradient)" rx="1.5"/>
+  <rect x="140" y="250" width="180" height="3" fill="url(#gradient)" rx="1.5"/>
   
   <!-- Gradient definition -->
   <defs>
